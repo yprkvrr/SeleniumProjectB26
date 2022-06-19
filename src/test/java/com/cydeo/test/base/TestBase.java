@@ -1,5 +1,6 @@
 package com.cydeo.test.base;
 
+import com.cydeo.test.utilities.ConfigurationReader;
 import com.cydeo.test.utilities.WebdriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
@@ -13,7 +14,7 @@ public class TestBase {
     @BeforeMethod
     public void setUpMethod() {
 
-        driver = WebdriverFactory.getDriver("chrome");
+        driver = WebdriverFactory.getDriver(ConfigurationReader.getProperty("env"));
         driver.manage().window().maximize();
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

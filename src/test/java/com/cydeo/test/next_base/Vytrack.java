@@ -1,8 +1,8 @@
 package com.cydeo.test.next_base;
 
 import com.cydeo.test.base.TestBase;
+import com.cydeo.test.utilities.VytrackLogIn;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
@@ -26,22 +26,20 @@ page by click on any of the car on the grid.
     @Test
     public void access() throws InterruptedException {
         driver.get("https://qa2.vytrack.com/user/login");
-        WebElement userName = driver.findElement(By.id("prependedInput"));
-        userName.sendKeys("user169" + Keys.ENTER);
-        WebElement password = driver.findElement(By.id("prependedInput2"));
-        password.sendKeys("UserUser123" + Keys.ENTER);
+
+        VytrackLogIn.login(driver,"user169","UserUser123");
 
 
-        WebElement fleet = driver.findElement(By.xpath("(//i[@class='fa-asterisk menu-icon'])[1]"));
+        WebElement fleet = driver.findElement(By.xpath("//i[@class='fa-asterisk menu-icon']"));
         Actions action = new Actions(driver);
-        action.moveToElement(fleet);
+        action.moveToElement(fleet).build().perform();
         Thread.sleep(3000);
         WebElement c = driver.findElement(By.xpath("//span[.='Vehicle Costs']"));
         action.moveToElement(c).click();
         Thread.sleep(3000);
 
-//        WebElement vehicleCostBtn=driver.findElement(By.xpath("//a[@title='Create Vehicle Costs']"));
-//        vehicleCostBtn.click();
+        WebElement vehicleCostBtn=driver.findElement(By.xpath("//a[@title='Create Vehicle Costs']"));
+        vehicleCostBtn.click();
 
     }
 }
