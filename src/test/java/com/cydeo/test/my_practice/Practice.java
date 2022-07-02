@@ -2,17 +2,25 @@ package com.cydeo.test.my_practice;
 
 import com.cydeo.test.base.TestBase;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Practice extends TestBase {
     @Test
     public void p01() throws InterruptedException {
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("http://tutorialsninja.com/demo/index.php?route=common/home");
 
         Actions actions = new Actions(driver);
@@ -53,6 +61,9 @@ public class Practice extends TestBase {
         Assert.assertTrue(Stringmessage.contains("Success"),"FAİLED");
 //
         System.out.println("Passed");
+
+
+
 
     }
 }
